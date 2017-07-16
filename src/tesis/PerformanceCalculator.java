@@ -122,7 +122,7 @@ public class PerformanceCalculator {
 
     public static void main(String[] args) {
         PerformanceCalculator pc = new PerformanceCalculator();
-        pc.readResultFile("C:/Users/Ivana Clairine/Dropbox/S2/TESIS/Hasil Eksperimen/Multilabel-5000 Iter-677Train-TestTrain.txt");
+        pc.readResultFile("C:/Users/Ivana Clairine/Dropbox/S2/TESIS/Hasil Eksperimen/PendidikanPolitik-3000 Iter-240Train-TrainTest.txt");
         System.out.println("F1-Measure Macro: " + pc.countF1Macro());
         System.out.println("F1-Measure Micro: " + pc.countF1Micro());
     }

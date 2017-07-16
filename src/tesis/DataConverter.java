@@ -123,18 +123,19 @@ public class DataConverter {
             } else if (code == 3) { //berita      categoryLevel1 (for every category) --> outputing 10 files
                 System.out.println("here case 3");
                 for (int i = 0; i < 10; i++) {
-                    int counter = 0;
                     writer = new BufferedWriter(new FileWriter(new File(path + "/Category1-10/data1LevelCategory-" + i + ".txt")));
                     for (int j = 0; j < newsList.size(); j++) {
+                        int isWritten = 0;
                         for (int k = 0; k < newsList.get(j).categories.size(); k++) {
                             if (newsList.get(j).categories.get(k) / 10 == i) {
-                                counter++;
+                                isWritten = 1;
                                 writer.write(newsList.get(j).isiberita + "\t" + getCategoryName(newsList.get(j).categories.get(k), 1));
                                 writer.write("\n");
-                                if(counter == 120) {
-                                    System.out.println("newsList[120]: " + newsList.get(j).isiberita);
-                                }
                             }
+                        }
+                        if (isWritten == 0 && newsList.get(j).isiberita.length() > 1) {
+                            writer.write(newsList.get(j).isiberita + "\t" + "Nope");
+                            writer.write("\n");
                         }
                     }
                     writer.close();
