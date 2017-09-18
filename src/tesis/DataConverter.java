@@ -121,7 +121,6 @@ public class DataConverter {
                     writer.write("\n");
                 }
             } else if (code == 3) { //berita      categoryLevel1 (for every category) --> outputing 10 files
-                System.out.println("here case 3");
                 for (int i = 0; i < 10; i++) {
                     writer = new BufferedWriter(new FileWriter(new File(path + "/Category1-10/data1LevelCategory-" + i + ".txt")));
                     for (int j = 0; j < newsList.size(); j++) {
@@ -136,6 +135,19 @@ public class DataConverter {
                         if (isWritten == 0 && newsList.get(j).isiberita.length() > 1) {
                             writer.write(newsList.get(j).isiberita + "\t" + "Nope");
                             writer.write("\n");
+                        }
+                    }
+                    writer.close();
+                }
+            } else if (code == 4) { //berita (for every category) --> for level 1, outputing 10 files
+                 for (int i = 0; i < 10; i++) {
+                    writer = new BufferedWriter(new FileWriter(new File(path + "/Category1-10/dataNoClassCategory-" + i + ".txt")));
+                    for (int j = 0; j < newsList.size(); j++) {
+                        for (int k = 0; k < newsList.get(j).categories.size(); k++) {
+                            if (newsList.get(j).categories.get(k) / 10 == i) {
+                                writer.write(newsList.get(j).isiberita);
+                                writer.write("\n");
+                            }
                         }
                     }
                     writer.close();
@@ -364,9 +376,10 @@ public class DataConverter {
         DataConverter dc = new DataConverter();
         try {
             dc.loadDataExcel("D:/ITB/S2/TESIS/seq2seq/Daftar Berita/Daftar Berita.xlsx");
-            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita/data2Level.txt", 1);
-            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita/data1Level.txt", 2);
-            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita", 3);
+//            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita/data2Level.txt", 1);
+//            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita/data1Level.txt", 2);
+//            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita", 3);
+            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita", 4);
 
         } catch (IOException ex) {
             Logger.getLogger(DataConverter.class
