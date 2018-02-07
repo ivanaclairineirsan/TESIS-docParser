@@ -142,15 +142,21 @@ public class DataConverter {
             } else if (code == 4) { //berita (for every category) --> for level 1, outputing 10 files
                  for (int i = 0; i < 10; i++) {
                     writer = new BufferedWriter(new FileWriter(new File(path + "/Category1-10/dataNoClassCategory-" + i + ".txt")));
+                    BufferedWriter writer2 = null;
+                    writer2 = new BufferedWriter(new FileWriter(new File(path + "/Category1-10/dataNoClassNegCategory-" + i + ".txt")));
                     for (int j = 0; j < newsList.size(); j++) {
                         for (int k = 0; k < newsList.get(j).categories.size(); k++) {
                             if (newsList.get(j).categories.get(k) / 10 == i) {
-                                writer.write(newsList.get(j).isiberita);
+                                writer.write(DataPreProcess.doStemming(DataPreProcess.punctuationRemover(newsList.get(j).isiberita)));
                                 writer.write("\n");
+                            } else {
+                                writer2.write(DataPreProcess.doStemming(DataPreProcess.punctuationRemover(newsList.get(j).isiberita)));
+                                writer2.write("\n");
                             }
                         }
                     }
                     writer.close();
+                    writer2.close();
                 }
             }
         } catch (Exception e) {
@@ -379,7 +385,7 @@ public class DataConverter {
 //            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita/data2Level.txt", 1);
 //            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita/data1Level.txt", 2);
 //            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita", 3);
-            dc.writeDataToTxt("D:/ITB/S2/TESIS/seq2seq/Data Berita", 4);
+            dc.writeDataToTxt("D:/ITB/S2/TESIS/cnn/DataBerita161017", 4);
 
         } catch (IOException ex) {
             Logger.getLogger(DataConverter.class
